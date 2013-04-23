@@ -1,6 +1,21 @@
+.left-container, .right-container {
+  height: 30px;
+}
+.left-container > div{
+  float: left;
+}
+
+.right-container > div{
+  float: right;
+}
 .popbox-up, .popbox-down {
-  text-align: center;
-  margin:0px auto;
+  width: 200px;
+  border: 1px solid gray;
+  margin-bottom: 10px;
+}
+
+.center-container > div {
+  margin: 0 auto 0 auto;
 }
 .open {
   background: gray;
