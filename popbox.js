@@ -23,7 +23,7 @@
 
         var pop = $(this), topOffset;
         if ( settings.placement === 'top' ) {
-          topOffset = box.height() * (-1) - element.height() - 8;
+          topOffset = box.height() * (-1) - $(this).height() - 8;
         } else {
           topOffset = 10;
         }
@@ -37,10 +37,10 @@
           box.css({
             'display': 'block', 
             'top': topOffset,
-            'left': ((pop.parent().width() * 0.5) -box.width() * 0.5 )
+            'left': ((pop.parent().width() * 0.5) - box.width() * 0.5 )
           });
+          setupArrow();
         }
-        setupArrow();
       },
 
       close: function(){
@@ -116,7 +116,7 @@
     return this.each(function(){
       if ( settings['dynamic_width'] ) {
         // Width needs to be set otherwise popbox will not move when window resized.
-        $(this).css({'width': $(settings['box']).width()}); 
+        $(this).css({'width': box.width()}); 
       }
       $(settings['open'], this).bind('click', methods.open);
       $(settings['open'], this).parent().find(settings['close']).bind('click', function(event){
