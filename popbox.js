@@ -9,15 +9,23 @@
       arrow_border  : '.arrow-border',
       close         : '.close',
       // if popbox float when resizing window, will alter container width
-      dynamic_width: false
+      dynamic_width: false,
+      placement: 'bottom'
     }, options);
+
+    var box = $(this).find(settings['box']);
+    var arrowStyle, arrowBorderStyle;
 
     var methods = {
       open: function(event){
         event.preventDefault();
 
-        var pop = $(this);
-        var box = $(this).parent().find(settings['box']);
+        var pop = $(this), topOffset;
+        if ( settings.placement === 'top' ) {
+          topOffset = box.height() * (-1) - $(this).height() - 8;
+        } else {
+          topOffset = 10;
+        }
 
         box.find(settings['arrow']).css({'left': box.width()/2 - 10});
         box.find(settings['arrow_border']).css({'left': box.width()/2 - 10});
@@ -25,12 +33,16 @@
         if(box.css('display') == 'block'){
           methods.close();
         } else {
-          box.css({'display': 'block', 'top': 10, 'left': ((pop.parent().width() * 0.5) -box.width() * 0.5 )});
+          box.css({
+            'display': 'block', 
+            'top': topOffset,
+            'left': ((pop.parent().width() * 0.5) -box.width() * 0.5 )
+          });
         }
       },
 
       close: function(){
-        $(settings['box']).fadeOut("fast");
+        box.fadeOut("fast");
       }
     };
 
@@ -47,6 +59,43 @@
     });
 
     // setup css
+    arrowStyle = {
+      "width": "0",
+      "height": "0",
+      "border-left": "11px solid transparent",
+      "border-right": "11px solid transparent",
+      "position": "absolute",
+      "left": "1px",
+      "z-index": "1001"
+    };
+    arrowBorderStyle = {
+      "width": "0",
+      "height": "0",
+      "border-left": "11px solid transparent",
+      "border-right": "11px solid transparent",
+      "position":"absolute",
+      "z-index":"1000"
+    };
+
+    if ( settings.placement === "top" ) {
+      arrowStyle["border-top-style"] = "solid";
+      arrowStyle["border-top-width"] = "11px";
+      arrowStyle["top"] = box.height() - 1;
+
+      arrowBorderStyle["border-top-style"] = "solid";
+      arrowBorderStyle["border-top-width"] = "11px";
+      arrowBorderStyle["top"] = box.height() + 1;
+    } else {
+      arrowStyle["border-bottom-style"] = "solid";
+      arrowStyle["border-bottom-width"] = "11px";
+      arrowStyle["top"] = "-10px";
+
+      arrowBorderStyle["border-bottom-style"] = "solid";
+      arrowBorderStyle["border-bottom-width"] = "11px";
+      arrowBorderStyle["top"] = "-12px";
+    }
+
+
     $(this).find(".collapse").css({
       position: "relative" 
     });
@@ -56,30 +105,9 @@
       position: "absolute" 
     });
 
-    $(this).find(settings["arrow"]).css({
-      "width": "0",
-      "height": "0",
-      "border-left": "11px solid transparent",
-      "border-right": "11px solid transparent",
-      "border-bottom-width": "11px",
-      "border-bottom-style": "solid",
-      "position": "absolute",
-      "left": "1px",
-      "top": "-10px",
-      "z-index": "1001"
-    });
+    $(this).find(settings["arrow"]).css(arrowStyle);
 
-    $(this).find(settings["arrow_border"]).css({
-      "width": "0",
-      "height": "0",
-      "border-left": "11px solid transparent",
-      "border-right": "11px solid transparent",
-      "border-bottom-width": "11px",
-      "border-bottom-style": "solid",
-      "position":"absolute",
-      "top": "-12px",
-      "z-index":"1000"
-    });
+    $(this).find(settings["arrow_border"]).css(arrowBorderStyle);
 
 
     return this.each(function(){

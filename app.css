@@ -1,14 +1,32 @@
+.popbox-up, .popbox-down {
+  text-align: center;
+  margin:0px auto;
+}
+.open {
+  background: gray;
+  color: white;
+}
 .box {
   background: white;
   border:solid 1px #BBBBBB;
   box-shadow:0px 0px 15px #999;
 }
 
-.arrow {
+.popbox-up .arrow {
+  /* arrow color here */
+  border-top-color: #fff;
+}
+.popbox-up .arrow-border {
+  /* arrow border color here */
+  border-top-color: #BBBBBB;
+}
+
+
+.popbox-down .arrow {
   /* arrow color here */
   border-bottom-color: #fff;
 }
-.arrow-border {
+.popbox-down .arrow-border {
   /* arrow border color here */
   border-bottom-color: #BBBBBB;
 }
