@@ -46,6 +46,42 @@
       }
     });
 
+    // setup css
+    $(this).find(".collapse").css({
+      position: "relative" 
+    });
+
+    $(this).find(settings["box"]).css({
+      display: "none",
+      position: "absolute" 
+    });
+
+    $(this).find(settings["arrow"]).css({
+      "width": "0",
+      "height": "0",
+      "border-left": "11px solid transparent",
+      "border-right": "11px solid transparent",
+      "border-bottom-width": "11px",
+      "border-bottom-style": "solid",
+      "position": "absolute",
+      "left": "1px",
+      "top": "-10px",
+      "z-index": "1001"
+    });
+
+    $(this).find(settings["arrow_border"]).css({
+      "width": "0",
+      "height": "0",
+      "border-left": "11px solid transparent",
+      "border-right": "11px solid transparent",
+      "border-bottom-width": "11px",
+      "border-bottom-style": "solid",
+      "position":"absolute",
+      "top": "-12px",
+      "z-index":"1000"
+    });
+
+
     return this.each(function(){
       if ( settings['dynamic_width'] ) {
         // Width needs to be set otherwise popbox will not move when window resized.

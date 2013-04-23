@@ -1,0 +1,14 @@
+.box {
+  background: white;
+  border:solid 1px #BBBBBB;
+  box-shadow:0px 0px 15px #999;
+}
+
+.arrow {
+  /* arrow color here */
+  border-bottom-color: #fff;
+}
+.arrow-border {
+  /* arrow border color here */
+  border-bottom-color: #BBBBBB;
+}
