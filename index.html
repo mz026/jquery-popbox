@@ -3,7 +3,7 @@
   <meta http-equiv='Content-type' content='text/html; charset=utf-8'>
   <title>PopBox</title>
   <link rel='stylesheet' href='popbox.css' type='text/css' media='screen' charset='utf-8'>
-  <script type='text/javascript' charset='utf-8' src='../jquery.js'></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js" type="text/javascript" charset="utf-8"></script>
   <script type='text/javascript' charset='utf-8' src='popbox.js'></script>
   <style type='text/css' media='screen'>
     body {
@@ -30,7 +30,9 @@
   </style>
   <script type='text/javascript' charset='utf-8'>
     $(document).ready(function(){
-      $('.popbox').popbox();
+        $('.popbox').popbox({
+          dynamic_width: true  
+        });
     });
   </script>
 </head>
