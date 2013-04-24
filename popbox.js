@@ -1,11 +1,9 @@
 (function(){
 
   $.fn.popbox = function(options){
-    var selector = this.selector;
 
     return this.each(function(){
       var settings = $.extend({
-        selector      : selector,
         open          : '.open',
         box           : '.box',
         arrow         : '.arrow',
@@ -70,8 +68,7 @@
       });
 
       $(document).bind('click', function(event){
-        //TODO fix this if no selector
-        if(!$(event.target).closest(settings['selector']).length){
+        if( ! element.has($(event.target)).length ){
           methods.close();
         }
       });
