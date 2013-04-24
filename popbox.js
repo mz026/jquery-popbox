@@ -24,24 +24,36 @@
         open: function(event){
           event.preventDefault();
 
-          var pop = $(this), topOffset;
+          var openElement = $(this) 
+            , parent = openElement.parent()
+            , normalLeftOffset = (box.width() - parent.width()) / 2
+            , parentLeftOffset = parent.offset().left
+            , parentRightOffset = $(window).width() 
+              - parentLeftOffset - parent.outerWidth()
+            , boxCss, topOffset;
+
           if ( settings.placement === 'top' ) {
             topOffset = box.height() * (-1) - $(this).height() - 8;
           } else {
             topOffset = 10;
           }
 
-          box.find(settings['arrow']).css({'left': box.width()/2 - 10});
-          box.find(settings['arrow_border']).css({'left': box.width()/2 - 10});
+          boxCss = {
+            "display": "block"
+            , "top": topOffset
+          };
 
           if(box.css('display') == 'block'){
             methods.close();
           } else {
-            box.css({
-              'display': 'block', 
-              'top': topOffset,
-              'left': ((pop.parent().width() * 0.5) - box.width() * 0.5 )
-            });
+            if ( parentLeftOffset < normalLeftOffset ) {
+              boxCss["left"] = parentLeftOffset < 0 ? 0 : - parentLeftOffset;
+            } else if ( parentRightOffset < normalLeftOffset ) {
+              boxCss["right"] = parentRightOffset < 0 ? 0 : - parentRightOffset;
+            } else {
+              boxCss["left"] = - normalLeftOffset;
+            }
+            box.css(boxCss);
             setupArrow();
           }
         },
@@ -92,6 +104,8 @@
       };
 
       function setupArrow () {
+        arrowStyle["left"] = box.width() / 2 - 10;
+        arrowBorderStyle["left"] = box.width() / 2 - 10;
         if ( settings.placement === "top" ) {
           arrowStyle["border-top-style"] = "solid";
           arrowStyle["border-top-width"] = "11px";
@@ -112,10 +126,6 @@
         element.find(settings["arrow"]).css(arrowStyle);
         element.find(settings["arrow_border"]).css(arrowBorderStyle);
       }
-
-
-
-
 
       if ( settings['dynamic_width'] ) {
         // Width needs to be set otherwise popbox will not move when window resized.
