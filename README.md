@@ -53,7 +53,8 @@ If there are any CSS class name conflicts, they can be overridden.
        'box'           : '.box',
        'arrow'         : '.arrow',
        'arrow_border'  : '.arrow_border',
-       'close'         : '.close'
+       'close'         : '.close',
+       'placement'     : 'top' // default to 'bottom'
       });
    });
 </script>
