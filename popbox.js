@@ -9,6 +9,7 @@
         arrow         : '.arrow',
         arrow_border  : '.arrow-border',
         close         : '.close',
+        collapse      : '.collapse',
         // if popbox float when resizing window, will alter container width
         dynamic_width: false,
         placement: 'bottom'
@@ -22,11 +23,11 @@
         open: function(event){
           event.preventDefault();
 
-          var openElement = $(this) 
+          var openElement = $(this)
             , parent = openElement.parent()
             , normalLeftOffset = (box.width() - parent.width()) / 2
             , parentLeftOffset = parent.offset().left
-            , parentRightOffset = $(window).width() 
+            , parentRightOffset = $(window).width()
               - parentLeftOffset - parent.outerWidth()
             , boxCss, topOffset;
 
@@ -74,13 +75,13 @@
       });
 
       // setup css
-      $(this).find(".collapse").css({
-        position: "relative" 
+      $(this).find(settings['collapse']).css({
+        position: "relative"
       });
 
       $(this).find(settings["box"]).css({
         display: "none",
-        position: "absolute" 
+        position: "absolute"
       });
 
       arrowStyle = {
@@ -126,7 +127,7 @@
 
       if ( settings['dynamic_width'] ) {
         // Width needs to be set otherwise popbox will not move when window resized.
-        $(this).css({'width': box.width()}); 
+        $(this).css({'width': box.width()});
       }
       $(settings['open'], this).bind('click', methods.open);
       $(settings['open'], this).parent().find(settings['close']).bind('click', function(event){

@@ -54,6 +54,7 @@ If there are any CSS class name conflicts, they can be overridden.
        'arrow'         : '.arrow',
        'arrow_border'  : '.arrow_border',
        'close'         : '.close',
+       'collapse'      : '.collapse',
        'placement'     : 'top' // default to 'bottom'
       });
    });
