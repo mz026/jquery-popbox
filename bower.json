@@ -1,0 +1,23 @@
+{
+  "name": "jquery-popbox",
+  "homepage": "https://github.com/mz026/jquery-popbox",
+  "authors": [
+    "Yang-Hsing Lin <yanghsing.lin@gmail.com>"
+  ],
+  "description": "Popbox UI tool built on jQuery",
+  "main": "popbox.js",
+  "moduleType": [],
+  "keywords": [
+    "popbox",
+    "jquery-popbox",
+    "jquery.popbox"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
